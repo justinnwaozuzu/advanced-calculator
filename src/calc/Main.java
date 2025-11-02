@@ -69,6 +69,15 @@ public class Main {
     private void processCalculation(String input) {
         try {
             String[] tokens = input.split("\\s+");
+            
+            // Handle single operand operations
+            if (tokens.length == 2) {
+                double a = Double.parseDouble(tokens[1]);
+                double result = performSingleOperation(tokens[0], a);
+                System.out.println("Result: " + result);
+                return;
+            }
+            
             if (tokens.length != 3) {
                 System.out.println("Invalid format. Use: number operator number");
                 return;
@@ -90,6 +99,21 @@ public class Main {
         }
     }
     
+    private double performSingleOperation(String operator, double a) {
+        switch (operator.toLowerCase()) {
+            case "sqrt":
+                return calculator.squareRoot(a);
+            case "log":
+                return calculator.logarithm(a);
+            case "ln":
+                return calculator.naturalLogarithm(a);
+            case "!":
+                return calculator.factorial((int) a);
+            default:
+                throw new IllegalArgumentException("Unknown operator: " + operator);
+        }
+    }
+    
     private double performOperation(double a, String operator, double b) {
         switch (operator) {
             case "+":
@@ -102,6 +126,10 @@ public class Main {
                 return calculator.divide(a, b);
             case "%":
                 return calculator.modulus(a, b);
+            case "^":
+            	return calculator.power(a, b);
+            case "root":
+            	return calculator.nthRoot(a, b);
             default:
                 throw new IllegalArgumentException("Unknown operator: " + operator);
         }
