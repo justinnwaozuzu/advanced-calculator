@@ -48,6 +48,12 @@ public class Main {
         System.out.println("  a * b       - Multiplication");
         System.out.println("  a / b       - Division");
         System.out.println("  a % b       - Modulus");
+        System.out.println("  a ^ b       - Power");
+        System.out.println("  log n       - Logarithm base 10");
+        System.out.println("  ln n        - Natural Logarithm");
+        System.out.println("  sqrt n      - Square Root");
+        System.out.println("  a root b    - Nth Root");
+        System.out.println("  n!          - Factorial");
         System.out.println("  history     - Show calculation history");
         System.out.println("  clear       - Clear history");
         System.out.println("  help        - Show this help");
@@ -68,6 +74,15 @@ public class Main {
     
     private void processCalculation(String input) {
         try {
+        	
+        	input = input.trim();
+            
+            // Handle factorial operation (special case)
+            if (input.endsWith("!")) {
+                handleFactorial(input);
+                return;
+            }
+            
             String[] tokens = input.split("\\s+");
             
             // Handle single operand operations
@@ -96,6 +111,22 @@ public class Main {
             System.out.println("Math Error: " + e.getMessage());
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
+        }
+    }
+    
+    private void handleFactorial(String input) {
+        try {
+            // Remove the ! and trim
+            String numberStr = input.substring(0, input.length() - 1).trim();
+            int number = Integer.parseInt(numberStr);
+            
+            double result = calculator.factorial(number);
+            System.out.println("Result: " + result);
+            
+        } catch (NumberFormatException e) {
+            System.out.println("Error: Invalid number for factorial");
+        } catch (ArithmeticException e) {
+            System.out.println("Math Error: " + e.getMessage());
         }
     }
     
