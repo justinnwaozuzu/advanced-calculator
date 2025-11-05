@@ -115,6 +115,73 @@ public class AdvancedCalculator {
         return result;
     }
     
+    // Trigonometric functions (input in degrees)
+    public double sin(double angle) {
+        double result = Math.sin(Math.toRadians(angle));
+        addToHistory("sin(" + angle + "°) = " + result);
+        return result;
+    }
+    
+    public double cos(double angle) {
+        double result = Math.cos(Math.toRadians(angle));
+        addToHistory("cos(" + angle + "°) = " + result);
+        return result;
+    }
+    
+    public double tan(double angle) {
+        if (Math.cos(Math.toRadians(angle)) == 0) {
+            throw new ArithmeticException("Tangent undefined for this angle");
+        }
+        double result = Math.tan(Math.toRadians(angle));
+        addToHistory("tan(" + angle + "°) = " + result);
+        return result;
+    }
+    
+    // Inverse trigonometric functions (output in degrees)
+    public double arcsin(double value) {
+        if (value < -1 || value > 1) {
+            throw new ArithmeticException("Arcsin input must be between -1 and 1");
+        }
+        double result = Math.toDegrees(Math.asin(value));
+        addToHistory("arcsin(" + value + ") = " + result + "°");
+        return result;
+    }
+    
+    public double arccos(double value) {
+        if (value < -1 || value > 1) {
+            throw new ArithmeticException("Arccos input must be between -1 and 1");
+        }
+        double result = Math.toDegrees(Math.acos(value));
+        addToHistory("arccos(" + value + ") = " + result + "°");
+        return result;
+    }
+    
+    public double arctan(double value) {
+        double result = Math.toDegrees(Math.atan(value));
+        addToHistory("arctan(" + value + ") = " + result + "°");
+        return result;
+    }
+    
+    // Hyperbolic functions
+    public double sinh(double x) {
+        double result = Math.sinh(x);
+        addToHistory("sinh(" + x + ") = " + result);
+        return result;
+    }
+    
+    public double cosh(double x) {
+        double result = Math.cosh(x);
+        addToHistory("cosh(" + x + ") = " + result);
+        return result;
+    }
+    
+    public double tanh(double x) {
+        double result = Math.tanh(x);
+        addToHistory("tanh(" + x + ") = " + result);
+        return result;
+    }
+    
+    
     private void addToHistory(String operation) {
         history.add(operation);
         // Keep only last 50 operations
@@ -151,7 +218,7 @@ public class AdvancedCalculator {
         addToHistory("Memory added: " + value + ", current: " + memory);
         return memory;
     }
-    
+     
     public double memorySubtract(double value) {
         this.memory -= value;
         addToHistory("Memory subtracted: " + value + ", current: " + memory);

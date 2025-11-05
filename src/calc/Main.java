@@ -42,18 +42,29 @@ public class Main {
     }
     
     private void showHelp() {
-        System.out.println("\nAvailable Commands:");
+    	System.out.println("\nAvailable Commands:");
+        System.out.println("Basic Operations:");
         System.out.println("  a + b       - Addition");
         System.out.println("  a - b       - Subtraction");
         System.out.println("  a * b       - Multiplication");
         System.out.println("  a / b       - Division");
         System.out.println("  a % b       - Modulus");
         System.out.println("  a ^ b       - Power");
+        System.out.println("  a root b    - Nth root");
+        
+        System.out.println("\nScientific Operations:");
+        System.out.println("  sqrt n      - Square root");
         System.out.println("  log n       - Logarithm base 10");
-        System.out.println("  ln n        - Natural Logarithm");
-        System.out.println("  sqrt n      - Square Root");
-        System.out.println("  a root b    - Nth Root");
+        System.out.println("  ln n        - Natural logarithm");
         System.out.println("  n!          - Factorial");
+        System.out.println("  sin n       - Sine (degrees)");
+        System.out.println("  cos n       - Cosine (degrees)");
+        System.out.println("  tan n       - Tangent (degrees)");
+        System.out.println("  arcsin n    - Inverse sine");
+        System.out.println("  arccos n    - Inverse cosine");
+        System.out.println("  arctan n    - Inverse tangent");
+        
+        System.out.println("\nUtility Commands:");
         System.out.println("  history     - Show calculation history");
         System.out.println("  clear       - Clear history");
         System.out.println("  help        - Show this help");
@@ -140,6 +151,24 @@ public class Main {
                 return calculator.naturalLogarithm(a);
             case "!":
                 return calculator.factorial((int) a);
+            case "sin":
+            	return calculator.sin(a);
+            case "cos":
+            	return calculator.cos(a);
+            case "tan":
+            	return calculator.tan(a);
+            case "arcsin":
+            	return calculator.arcsin(a);
+            case "arccos":
+            	return calculator.arccos(a);
+            case "arctan":
+            	return calculator.arctan(a);
+            case "sinh":
+            	return calculator.sinh(a);
+            case "cosh":
+            	return calculator.cosh(a);
+            case "tanh":
+            	return calculator.tanh(a);
             default:
                 throw new IllegalArgumentException("Unknown operator: " + operator);
         }
