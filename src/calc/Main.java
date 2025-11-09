@@ -8,10 +8,12 @@ import java.util.Scanner;
  */
 public class Main {
     private AdvancedCalculator calculator;
+    private ExpressionParser parser;
     private Scanner scanner;
     
     public Main() {
         this.calculator = new AdvancedCalculator();
+        this.parser = new ExpressionParser(calculator);
         this.scanner = new Scanner(System.in);
     }
     
@@ -84,6 +86,11 @@ public class Main {
     }
     
     private void processCalculation(String input) {
+    	if (input.contains("+") || input.contains("-") || input.contains("*") || 
+        	    input.contains("/") || input.contains("^") || input.contains("(")) {
+        	    handleExpression(input);
+        	    return;
+        }
         try {
         	
         	input = input.trim();
@@ -122,6 +129,21 @@ public class Main {
             System.out.println("Math Error: " + e.getMessage());
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
+        }
+        
+        
+    }
+    
+    private void handleExpression(String expression) {
+        try {
+            double result = parser.evaluate(expression);
+            System.out.println("Result: " + result);
+        } catch (Exception e) {
+            System.out.println("Expression Error: " + e.getMessage());
+            System.out.println("Usage examples:");
+            System.out.println("  (2 + 3) * 4");
+            System.out.println("  sin(30) + cos(60)");
+            System.out.println("  2^3 * sqrt(16)");
         }
     }
     
